@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  rag_base:
+    container_name: rag_base
+    build:
+      context: .
+      args:
+        - USER_NAME=${USER_NAME}
+        - GROUP_NAME=${GROUP_NAME}
+        - PASSWORD=${PASSWORD}
+        - UID=${UID}
+        - GID=${GID}
+        - GIT_USER_NAME=${GIT_USER_NAME}
+        - GIT_USER_EMAIL=${GIT_USER_EMAIL}
+        - PYTHON_VERSION=${PYTHON_VERSION}
+        - CUDA_VERSION=${CUDA_VERSION}
+      dockerfile: Dockerfile
+    image: n622jwith/rag_base:latest
+    environment:
+      - DISPLAY=${DISPLAY}
+      - "QT_X11_NO_MITSHM=1"
+    volumes:
+      # GUI
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority/:/home/${USER_NAME}/.Xauthority:ro
+      # ssh key
+      - $HOME/.ssh:/home/${USER_NAME}/.ssh:ro
+      # workspace
+      - $HOME/ML/RAG_base:/home/${USER_NAME}/rag_base
+    hostname: rag_base
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    tty: true
+    user: "${UID}:${GID}"
