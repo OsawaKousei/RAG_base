@@ -32,4 +32,3 @@ repos:
     rev: master
     hooks:
       - id: hadolint
-        args: [--ignore, DL3025, --ignore, DL3018]
