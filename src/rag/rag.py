@@ -158,4 +158,6 @@ rag_chain = (
 
 if __name__ == "__main__":
     rag_output = rag_chain.invoke("四国地方で一番高い山は何ですか？")
-    print(rag_output)
+    print(
+        rag_output
+    )  # 四国地方で一番高い山は、愛媛県と高知県の県境にある石鎚山です。標高は1,982メートルです。

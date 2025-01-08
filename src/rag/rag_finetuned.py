@@ -161,4 +161,4 @@ rag_chain = (
 
 if __name__ == "__main__":
     rag_output = rag_chain.invoke("四国地方で一番高い山は何ですか？")
-    print(rag_output)
+    print(rag_output)  # 石鎚山
