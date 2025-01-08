@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "faiss-cpu>=1.9.0.post1",
+    "jq>=1.8.0",
     "langchain>=0.3.14",
     "langchain-community>=0.3.14",
     "langchain-huggingface>=0.1.2",

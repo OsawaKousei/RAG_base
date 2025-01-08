@@ -32,9 +32,12 @@ else:
 model_name = "llm-book/Swallow-7b-hf-oasst1-21k-ja"
 
 model = AutoModelForCausalLM.from_pretrained(
-    model_name, torch_dtype=torch.float16, device_map="auto"
+    model_name,
+    torch_dtype=torch.float16,
+    device_map="auto",
+    cache_dir="./pretrained_models",
 )
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name, cache_dir="./pretrained_models")
 
 # パラメータの設定
 generation_config = {
@@ -83,11 +86,12 @@ chat_model_resp_only = RunnableLambda(chat_model_resp_only_func)
 
 # モデルの読み込み
 embedding_model_name = "BAAI/bge-m3"
-
 embedding_model = HuggingFaceEmbeddings(
     model_name=embedding_model_name,
+    cache_folder="./pretrained_models",
     model_kwargs={"model_kwargs": {"torch_dtype": torch.float16}},
 )
+
 
 # loaderを初期化
 document_loader = JSONLoader(
