@@ -12,9 +12,12 @@ set_seed(42)
 model_name = "llm-book/Swallow-7b-hf-oasst1-21k-ja"
 
 model = AutoModelForCausalLM.from_pretrained(
-    model_name, torch_dtype=torch.float16, device_map="auto"
+    model_name,
+    torch_dtype=torch.float16,
+    device_map="auto",
+    cache_dir="./pretrained_models",
 )
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name, cache_dir="./pretrained_models")
 
 # パラメータの設定
 generation_config = {

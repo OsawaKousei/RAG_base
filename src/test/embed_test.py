@@ -3,11 +3,12 @@ from langchain_huggingface import HuggingFaceEmbeddings
 
 # モデルの読み込み
 embedding_model_name = "BAAI/bge-m3"
-
 embedding_model = HuggingFaceEmbeddings(
     model_name=embedding_model_name,
+    cache_folder="./pretrained_models",
     model_kwargs={"model_kwargs": {"torch_dtype": torch.float16}},
 )
+
 
 sample_texts = [
     "日本で一番高い山はなんですか？",
