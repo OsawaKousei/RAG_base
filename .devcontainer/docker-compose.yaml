@@ -27,7 +27,7 @@ services:
       # ssh key
       - $HOME/.ssh:/home/${USER_NAME}/.ssh:ro
       # workspace
-      - $HOME/ML/RAG_base:/home/${USER_NAME}/rag_base
+      - $HOME/ML/rag_base:/home/${USER_NAME}/rag_base
     hostname: rag_base
     deploy:
       resources:
